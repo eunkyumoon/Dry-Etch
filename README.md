@@ -255,6 +255,139 @@ RUL과 별개로, 부품 파손이나 급격한 마모로 인한 Vpp 급증 또�
 
 ---
 
+## 🚀 프로젝트 실행 방법
+
+### 사전 요구사항
+
+- Python 3.8 이상
+- pip 패키지 관리자
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/eunkyumoon/Dry-Etch.git
+cd Dry-Etch
+```
+
+### 2. 패키지 설치
+
+```bash
+pip install -r requirements.txt
+```
+
+필요한 패키지:
+- `numpy>=1.21.0`
+- `pandas>=1.3.0`
+- `scikit-learn>=1.0.0`
+- `matplotlib>=3.4.0`
+- `seaborn>=0.11.0`
+- `streamlit>=1.28.0`
+- `plotly>=5.17.0`
+
+### 3. 실행 방법
+
+#### 방법 1: 웹 대시보드 실행 (권장)
+
+실시간 모니터링 대시보드를 실행합니다:
+
+```bash
+streamlit run dashboard.py
+```
+
+브라우저에서 자동으로 열리며, `http://localhost:8501`에서 접속 가능합니다.
+
+**대시보드 기능:**
+- 중앙 네트워크 시각화 (챔버 상태)
+- 좌측 패널: RF 파라미터 모니터링, 마모 상태 분석, RUL 예측
+- 우측 패널: 설비 운영 모니터링, 위험 모니터링, 교체 알람
+- 하단 패널: 시간 시리즈 차트
+
+**사이드바 설정:**
+- 챔버 선택 (Chamber1-4)
+- 누적 시간 슬라이더 (0-2000시간)
+- 자동 새로고침 옵션
+
+자세한 내용은 [DASHBOARD_README.md](DASHBOARD_README.md)를 참조하세요.
+
+#### 방법 2: 콘솔 기반 실행
+
+시뮬레이션을 콘솔에서 실행합니다:
+
+```bash
+python -m refactored.main
+```
+
+또는
+
+```bash
+cd refactored
+python main.py
+```
+
+**실행 결과:**
+- 시간별 마모 진행도 시뮬레이션
+- RF 파라미터 변화 추이
+- 마모 상태 및 RUL 예측 결과
+- 이상 탐지 결과
+
+자세한 내용은 [refactored/README.md](refactored/README.md)를 참조하세요.
+
+### 4. 프로젝트 구조
+
+```
+Dry-Etch/
+├── dashboard.py              # 웹 대시보드 메인 파일
+├── requirements.txt          # 패키지 의존성
+├── README.md                 # 프로젝트 개요 및 실행 방법
+├── DASHBOARD_README.md       # 대시보드 사용 가이드
+├── refactored/               # 리팩토링된 코드
+│   ├── __init__.py
+│   ├── config.py             # 설정 파일
+│   ├── models.py             # 데이터 모델
+│   ├── data_collector.py    # 데이터 수집
+│   ├── wear_estimator.py     # 마모 상태 추정
+│   ├── rul_predictor.py      # RUL 예측
+│   ├── anomaly_detector.py  # 이상 탐지
+│   └── main.py              # 메인 실행 파일
+├── src/                      # 초기 구현 코드
+├── reports/                  # 프로젝트 리포트
+├── prompting/                # AI 프롬프트 템플릿
+└── test_cases/              # 테스트 케이스
+```
+
+### 5. 문제 해결
+
+#### 대시보드가 열리지 않는 경우
+
+1. **포트 충돌**: 다른 포트 사용
+   ```bash
+   streamlit run dashboard.py --server.port 8502
+   ```
+
+2. **모듈을 찾을 수 없는 경우**: 
+   - `refactored/` 폴더가 같은 디렉토리에 있는지 확인
+   - Python 경로 확인
+
+3. **패키지 설치 오류**:
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt --force-reinstall
+   ```
+
+#### 콘솔 실행 오류
+
+1. **모듈 import 오류**: 프로젝트 루트에서 실행 확인
+2. **데이터 오류**: `refactored/config.py`의 설정값 확인
+
+### 6. 추가 리소스
+
+- **대시보드 가이드**: [DASHBOARD_README.md](DASHBOARD_README.md)
+- **코드 가이드**: [refactored/README.md](refactored/README.md)
+- **테스트 케이스**: [test_cases/README.md](test_cases/README.md)
+- **프로젝트 리포트**: [reports/README.md](reports/README.md)
+
+---
+
 ## 👥 담당 팀
 
 - **설비 기술팀**
