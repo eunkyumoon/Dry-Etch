@@ -102,10 +102,10 @@ def main():
         print(f"  Arcing 위험도: {arcing_risk:.1f}% ({risk_level})")
         
         if replacement_needed:
-            print(f"  ⚠️  교체 권장! 알람 레벨: {alarm_level}")
+            print(f"  [경고] 교체 권장! 알람 레벨: {alarm_level}")
         
         if is_rapid_wear:
-            print(f"  ⚠️  급격한 마모 감지! 마모율: {wear_rate:.2f}%/시간")
+            print(f"  [경고] 급격한 마모 감지! 마모율: {wear_rate:.2f}%/시간")
         
         previous_degradation = degradation_index
         

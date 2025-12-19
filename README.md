@@ -171,6 +171,223 @@ RUL과 별개로, 부품 파손이나 급격한 마모로 인한 Vpp 급증 또�
 
 ---
 
+## 🔧 리팩토링 TODO 목록
+
+코드 품질 개선 및 유지보수를 위한 리팩토링 작업 목록입니다.
+
+### 코드 구조 개선
+- [ ] 모듈 간 의존성 최소화 및 인터페이스 정의
+- [ ] 설정 파일 분리 (config.py 또는 YAML 파일)
+- [ ] 로깅 시스템 통합 (Python logging 모듈)
+- [ ] 예외 처리 강화 및 커스텀 예외 클래스 정의
+- [ ] 타입 힌팅 추가 (Type Hints)
+
+### 데이터 처리 개선
+- [ ] 데이터베이스 연동 모듈 추가 (실제 장비 데이터 수집)
+- [ ] 데이터 검증 로직 강화
+- [ ] 데이터 캐싱 메커니즘 구현
+- [ ] 배치 처리 기능 추가
+- [ ] 데이터 품질 모니터링 기능 추가
+
+### 모델 개선
+- [ ] 실제 데이터 기반 모델 학습 파이프라인 구축
+- [ ] 모델 버전 관리 시스템 구현
+- [ ] 모델 성능 모니터링 및 자동 재학습 기능
+- [ ] 신뢰 구간 계산 개선 (불확실성 정량화)
+- [ ] 앙상블 모델 적용 검토
+- [ ] 딥러닝 모델 (LSTM, Transformer) 적용 검토
+
+### 성능 최적화
+- [ ] 대용량 데이터 처리 최적화
+- [ ] 병렬 처리 구현 (멀티프로세싱/멀티스레딩)
+- [ ] 메모리 사용량 최적화
+- [ ] API 응답 시간 개선
+- [ ] 데이터베이스 쿼리 최적화
+
+### 테스트 및 품질 관리
+- [ ] 단위 테스트 작성 (pytest)
+- [ ] 통합 테스트 작성
+- [ ] 성능 테스트 작성
+- [ ] 코드 커버리지 80% 이상 달성
+- [ ] 정적 코드 분석 도구 적용 (pylint, mypy)
+
+### 문서화 개선
+- [ ] API 문서 자동 생성 (Sphinx 또는 docstring)
+- [ ] 사용자 가이드 작성
+- [ ] 개발자 가이드 작성
+- [ ] 코드 주석 보완
+- [ ] 아키텍처 다이어그램 작성
+
+### 보안 및 안정성
+- [ ] 입력 데이터 검증 및 Sanitization
+- [ ] SQL Injection 방지 (파라미터화된 쿼리)
+- [ ] 인증 및 권한 관리 시스템 구현
+- [ ] 로그 보안 강화 (민감 정보 마스킹)
+- [ ] 에러 메시지 보안 강화
+
+### 사용자 경험 개선
+- [ ] 웹 대시보드 개발 (Flask/FastAPI + React)
+- [ ] 실시간 알람 시스템 구현 (WebSocket)
+- [ ] 리포트 자동 생성 및 이메일 전송
+- [ ] 모바일 알림 기능 추가
+- [ ] 다국어 지원 (한국어/영어)
+
+### 운영 환경 대응
+- [ ] Docker 컨테이너화
+- [ ] CI/CD 파이프라인 구축 (GitHub Actions)
+- [ ] 환경 변수 관리 (.env 파일)
+- [ ] 모니터링 및 알람 시스템 통합 (Prometheus, Grafana)
+- [ ] 로그 집계 시스템 구축 (ELK Stack)
+
+### 코드 품질 개선
+- [ ] 코드 스타일 통일 (Black, isort)
+- [ ] 중복 코드 제거 (DRY 원칙)
+- [ ] 매직 넘버 상수화
+- [ ] 긴 함수 분리 및 리팩토링
+- [ ] 클래스 책임 분리 (SRP)
+
+### 확장성 개선
+- [ ] 플러그인 아키텍처 도입
+- [ ] 다른 소모품 타입 지원 확장
+- [ ] 다른 공정 타입 지원 확장
+- [ ] 마이크로서비스 아키텍처 검토
+- [ ] API 버전 관리
+
+---
+
+## 🚀 프로젝트 실행 방법
+
+### 사전 요구사항
+
+- Python 3.8 이상
+- pip 패키지 관리자
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/eunkyumoon/Dry-Etch.git
+cd Dry-Etch
+```
+
+### 2. 패키지 설치
+
+```bash
+pip install -r requirements.txt
+```
+
+필요한 패키지:
+- `numpy>=1.21.0`
+- `pandas>=1.3.0`
+- `scikit-learn>=1.0.0`
+- `matplotlib>=3.4.0`
+- `seaborn>=0.11.0`
+- `streamlit>=1.28.0`
+- `plotly>=5.17.0`
+
+### 3. 실행 방법
+
+#### 방법 1: 웹 대시보드 실행 (권장)
+
+실시간 모니터링 대시보드를 실행합니다:
+
+```bash
+streamlit run dashboard.py
+```
+
+브라우저에서 자동으로 열리며, `http://localhost:8501`에서 접속 가능합니다.
+
+**대시보드 기능:**
+- 중앙 네트워크 시각화 (챔버 상태)
+- 좌측 패널: RF 파라미터 모니터링, 마모 상태 분석, RUL 예측
+- 우측 패널: 설비 운영 모니터링, 위험 모니터링, 교체 알람
+- 하단 패널: 시간 시리즈 차트
+
+**사이드바 설정:**
+- 챔버 선택 (Chamber1-4)
+- 누적 시간 슬라이더 (0-2000시간)
+- 자동 새로고침 옵션
+
+자세한 내용은 [DASHBOARD_README.md](DASHBOARD_README.md)를 참조하세요.
+
+#### 방법 2: 콘솔 기반 실행
+
+시뮬레이션을 콘솔에서 실행합니다:
+
+```bash
+python -m refactored.main
+```
+
+또는
+
+```bash
+cd refactored
+python main.py
+```
+
+**실행 결과:**
+- 시간별 마모 진행도 시뮬레이션
+- RF 파라미터 변화 추이
+- 마모 상태 및 RUL 예측 결과
+- 이상 탐지 결과
+
+자세한 내용은 [refactored/README.md](refactored/README.md)를 참조하세요.
+
+### 4. 프로젝트 구조
+
+```
+Dry-Etch/
+├── dashboard.py              # 웹 대시보드 메인 파일
+├── requirements.txt          # 패키지 의존성
+├── README.md                 # 프로젝트 개요 및 실행 방법
+├── DASHBOARD_README.md       # 대시보드 사용 가이드
+├── refactored/               # 리팩토링된 코드
+│   ├── __init__.py
+│   ├── config.py             # 설정 파일
+│   ├── models.py             # 데이터 모델
+│   ├── data_collector.py    # 데이터 수집
+│   ├── wear_estimator.py     # 마모 상태 추정
+│   ├── rul_predictor.py      # RUL 예측
+│   ├── anomaly_detector.py  # 이상 탐지
+│   └── main.py              # 메인 실행 파일
+├── src/                      # 초기 구현 코드
+├── reports/                  # 프로젝트 리포트
+├── prompting/                # AI 프롬프트 템플릿
+└── test_cases/              # 테스트 케이스
+```
+
+### 5. 문제 해결
+
+#### 대시보드가 열리지 않는 경우
+
+1. **포트 충돌**: 다른 포트 사용
+   ```bash
+   streamlit run dashboard.py --server.port 8502
+   ```
+
+2. **모듈을 찾을 수 없는 경우**: 
+   - `refactored/` 폴더가 같은 디렉토리에 있는지 확인
+   - Python 경로 확인
+
+3. **패키지 설치 오류**:
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt --force-reinstall
+   ```
+
+#### 콘솔 실행 오류
+
+1. **모듈 import 오류**: 프로젝트 루트에서 실행 확인
+2. **데이터 오류**: `refactored/config.py`의 설정값 확인
+
+### 6. 추가 리소스
+
+- **대시보드 가이드**: [DASHBOARD_README.md](DASHBOARD_README.md)
+- **코드 가이드**: [refactored/README.md](refactored/README.md)
+- **테스트 케이스**: [test_cases/README.md](test_cases/README.md)
+- **프로젝트 리포트**: [reports/README.md](reports/README.md)
+
+---
+
 ## 👥 담당 팀
 
 - **설비 기술팀**
